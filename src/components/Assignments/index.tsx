@@ -1,9 +1,10 @@
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
+// import { useState } from "react";
 
 type AssignmentsProps = { 
-  assignments: { id: string; text: string, isChecked: boolean }[];
-  setAssignments : React.Dispatch<React.SetStateAction<{ id: string; text: string; isChecked: boolean; }[]>>;
+  assignments: { id: string; text: string; isChecked: boolean; dueDate: Date | undefined }[];
+  setAssignments : React.Dispatch<React.SetStateAction<{ id: string; text: string; isChecked: boolean; dueDate: Date | undefined; }[]>>;
   completedAssignments: number;
   setCompletedAssignments: (i: number) => void;
 }
@@ -16,7 +17,7 @@ export function Assignments({
 }:
 AssignmentsProps) {
   const assignmentsLength = assignments.length;
-
+  
   const checkBoxHandler = (uuidKey: string) => {
     const checkBoxToToggle = assignments.find((assignment) => assignment.id === uuidKey);
     if (checkBoxToToggle) {
